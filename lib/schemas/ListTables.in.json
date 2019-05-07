@@ -1,0 +1,61 @@
+{
+    "type": "object",
+    "properties": {
+        "Limit": {
+            "required": false,
+            "type": "string"
+        },
+        "ExclusiveStartTableName": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of a <code>ListTables</code> operation.",
+            "example": {},
+            "properties": {
+                "ExclusiveStartTableName": {
+                    "description": "The first table name that this operation will evaluate. Use the value that was returned for <code>LastEvaluatedTableName</code> in a previous operation, so that you can obtain the next page of results.",
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "Limit": {
+                    "description": "A maximum number of table names to return. If this parameter is not specified, the limit is 100.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

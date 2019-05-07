@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "PointInTimeRecoverySpecification": {
+                    "description": "Represents the settings used to enable point in time recovery.",
+                    "properties": {
+                        "PointInTimeRecoveryEnabled": {
+                            "description": "Indicates whether point in time recovery is enabled (true) or disabled (false) on the table.",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "PointInTimeRecoveryEnabled"
+                    ],
+                    "type": "object"
+                },
+                "TableName": {
+                    "description": "The name of the table.",
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "TableName",
+                "PointInTimeRecoverySpecification"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

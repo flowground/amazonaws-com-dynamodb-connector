@@ -1,0 +1,78 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of an <code>UpdateTimeToLive</code> operation.",
+            "properties": {
+                "TableName": {
+                    "description": "The name of the table to be configured.",
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "TimeToLiveSpecification": {
+                    "description": "Represents the settings used to enable or disable Time to Live for the specified table.",
+                    "properties": {
+                        "AttributeName": {
+                            "description": "The name of the Time to Live attribute used to store the expiration time for items in the table.",
+                            "maxLength": 255,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "Enabled": {
+                            "description": "Indicates whether Time To Live is to be enabled (true) or disabled (false) on the table.",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "Enabled",
+                        "AttributeName"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "TableName",
+                "TimeToLiveSpecification"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

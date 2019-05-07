@@ -1,0 +1,423 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "GlobalTableBillingMode": {
+                    "description": "The billing mode of the global table. If <code>GlobalTableBillingMode</code> is not specified, the global table defaults to <code>PROVISIONED</code> capacity billing mode.",
+                    "enum": [
+                        "PROVISIONED",
+                        "PAY_PER_REQUEST"
+                    ],
+                    "type": "string"
+                },
+                "GlobalTableGlobalSecondaryIndexSettingsUpdate": {
+                    "description": "Represents the settings of a global secondary index for a global table that will be modified.",
+                    "items": {
+                        "description": "Represents the settings of a global secondary index for a global table that will be modified.",
+                        "properties": {
+                            "IndexName": {
+                                "description": "The name of the global secondary index. The name must be unique among all other indexes on this table.",
+                                "maxLength": 255,
+                                "minLength": 3,
+                                "pattern": "[a-zA-Z0-9_.-]+",
+                                "type": "string"
+                            },
+                            "ProvisionedWriteCapacityAutoScalingSettingsUpdate": {
+                                "description": "AutoScaling settings for managing a global secondary index's write capacity units.",
+                                "properties": {
+                                    "AutoScalingDisabled": {
+                                        "description": "Disabled autoscaling for this global table or global secondary index.",
+                                        "type": "boolean"
+                                    },
+                                    "AutoScalingRoleArn": {
+                                        "description": "Role ARN used for configuring autoscaling policy.",
+                                        "maxLength": 1600,
+                                        "minLength": 1,
+                                        "type": "string",
+                                        "x-pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+                                    },
+                                    "MaximumUnits": {
+                                        "description": "The maximum capacity units that a global table or global secondary index should be scaled up to.",
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    "MinimumUnits": {
+                                        "description": "The minimum capacity units that a global table or global secondary index should be scaled down to.",
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    "ScalingPolicyUpdate": {
+                                        "description": "The scaling policy to apply for scaling target global table or global secondary index capacity units.",
+                                        "properties": {
+                                            "PolicyName": {
+                                                "description": "The name of the scaling policy.",
+                                                "maxLength": 256,
+                                                "minLength": 1,
+                                                "pattern": "\\p{Print}+",
+                                                "type": "string"
+                                            },
+                                            "TargetTrackingScalingPolicyConfiguration": {
+                                                "description": "Represents a target tracking scaling policy configuration.",
+                                                "properties": {
+                                                    "DisableScaleIn": {
+                                                        "description": "Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.",
+                                                        "type": "boolean"
+                                                    },
+                                                    "ScaleInCooldown": {
+                                                        "description": "The amount of time, in seconds, after a scale in activity completes before another scale in activity can start. The cooldown period is used to block subsequent scale in requests until it has expired. You should scale in conservatively to protect your application's availability. However, if another alarm triggers a scale out policy during the cooldown period after a scale-in, application autoscaling scales out your scalable target immediately. ",
+                                                        "type": "integer"
+                                                    },
+                                                    "ScaleOutCooldown": {
+                                                        "description": "The amount of time, in seconds, after a scale out activity completes before another scale out activity can start. While the cooldown period is in effect, the capacity that has been added by the previous scale out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out. You should continuously (but not excessively) scale out.",
+                                                        "type": "integer"
+                                                    },
+                                                    "TargetValue": {
+                                                        "description": "The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).",
+                                                        "format": "double",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "TargetValue"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "TargetTrackingScalingPolicyConfiguration"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "ProvisionedWriteCapacityUnits": {
+                                "description": "The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException.</code> ",
+                                "minimum": 1,
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "IndexName"
+                        ],
+                        "type": "object"
+                    },
+                    "maxItems": 20,
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "GlobalTableName": {
+                    "description": "The name of the global table",
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate": {
+                    "description": "AutoScaling settings for managing provisioned write capacity for the global table.",
+                    "properties": {
+                        "AutoScalingDisabled": {
+                            "description": "Disabled autoscaling for this global table or global secondary index.",
+                            "type": "boolean"
+                        },
+                        "AutoScalingRoleArn": {
+                            "description": "Role ARN used for configuring autoscaling policy.",
+                            "maxLength": 1600,
+                            "minLength": 1,
+                            "type": "string",
+                            "x-pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+                        },
+                        "MaximumUnits": {
+                            "description": "The maximum capacity units that a global table or global secondary index should be scaled up to.",
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "MinimumUnits": {
+                            "description": "The minimum capacity units that a global table or global secondary index should be scaled down to.",
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        "ScalingPolicyUpdate": {
+                            "description": "The scaling policy to apply for scaling target global table or global secondary index capacity units.",
+                            "properties": {
+                                "PolicyName": {
+                                    "description": "The name of the scaling policy.",
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "\\p{Print}+",
+                                    "type": "string"
+                                },
+                                "TargetTrackingScalingPolicyConfiguration": {
+                                    "description": "Represents a target tracking scaling policy configuration.",
+                                    "properties": {
+                                        "DisableScaleIn": {
+                                            "description": "Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.",
+                                            "type": "boolean"
+                                        },
+                                        "ScaleInCooldown": {
+                                            "description": "The amount of time, in seconds, after a scale in activity completes before another scale in activity can start. The cooldown period is used to block subsequent scale in requests until it has expired. You should scale in conservatively to protect your application's availability. However, if another alarm triggers a scale out policy during the cooldown period after a scale-in, application autoscaling scales out your scalable target immediately. ",
+                                            "type": "integer"
+                                        },
+                                        "ScaleOutCooldown": {
+                                            "description": "The amount of time, in seconds, after a scale out activity completes before another scale out activity can start. While the cooldown period is in effect, the capacity that has been added by the previous scale out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out. You should continuously (but not excessively) scale out.",
+                                            "type": "integer"
+                                        },
+                                        "TargetValue": {
+                                            "description": "The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).",
+                                            "format": "double",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "TargetValue"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "TargetTrackingScalingPolicyConfiguration"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "GlobalTableProvisionedWriteCapacityUnits": {
+                    "description": "The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException.</code> ",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "ReplicaSettingsUpdate": {
+                    "description": "Represents the settings for a global table in a region that will be modified.",
+                    "items": {
+                        "description": "Represents the settings for a global table in a region that will be modified.",
+                        "properties": {
+                            "RegionName": {
+                                "description": "The region of the replica to be added.",
+                                "type": "string"
+                            },
+                            "ReplicaGlobalSecondaryIndexSettingsUpdate": {
+                                "description": "Represents the settings of a global secondary index for a global table that will be modified.",
+                                "items": {
+                                    "description": "Represents the settings of a global secondary index for a global table that will be modified.",
+                                    "properties": {
+                                        "IndexName": {
+                                            "description": "The name of the global secondary index. The name must be unique among all other indexes on this table.",
+                                            "maxLength": 255,
+                                            "minLength": 3,
+                                            "pattern": "[a-zA-Z0-9_.-]+",
+                                            "type": "string"
+                                        },
+                                        "ProvisionedReadCapacityAutoScalingSettingsUpdate": {
+                                            "description": "Autoscaling settings for managing a global secondary index replica's read capacity units.",
+                                            "properties": {
+                                                "AutoScalingDisabled": {
+                                                    "description": "Disabled autoscaling for this global table or global secondary index.",
+                                                    "type": "boolean"
+                                                },
+                                                "AutoScalingRoleArn": {
+                                                    "description": "Role ARN used for configuring autoscaling policy.",
+                                                    "maxLength": 1600,
+                                                    "minLength": 1,
+                                                    "type": "string",
+                                                    "x-pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+                                                },
+                                                "MaximumUnits": {
+                                                    "description": "The maximum capacity units that a global table or global secondary index should be scaled up to.",
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "MinimumUnits": {
+                                                    "description": "The minimum capacity units that a global table or global secondary index should be scaled down to.",
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                },
+                                                "ScalingPolicyUpdate": {
+                                                    "description": "The scaling policy to apply for scaling target global table or global secondary index capacity units.",
+                                                    "properties": {
+                                                        "PolicyName": {
+                                                            "description": "The name of the scaling policy.",
+                                                            "maxLength": 256,
+                                                            "minLength": 1,
+                                                            "pattern": "\\p{Print}+",
+                                                            "type": "string"
+                                                        },
+                                                        "TargetTrackingScalingPolicyConfiguration": {
+                                                            "description": "Represents a target tracking scaling policy configuration.",
+                                                            "properties": {
+                                                                "DisableScaleIn": {
+                                                                    "description": "Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.",
+                                                                    "type": "boolean"
+                                                                },
+                                                                "ScaleInCooldown": {
+                                                                    "description": "The amount of time, in seconds, after a scale in activity completes before another scale in activity can start. The cooldown period is used to block subsequent scale in requests until it has expired. You should scale in conservatively to protect your application's availability. However, if another alarm triggers a scale out policy during the cooldown period after a scale-in, application autoscaling scales out your scalable target immediately. ",
+                                                                    "type": "integer"
+                                                                },
+                                                                "ScaleOutCooldown": {
+                                                                    "description": "The amount of time, in seconds, after a scale out activity completes before another scale out activity can start. While the cooldown period is in effect, the capacity that has been added by the previous scale out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out. You should continuously (but not excessively) scale out.",
+                                                                    "type": "integer"
+                                                                },
+                                                                "TargetValue": {
+                                                                    "description": "The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).",
+                                                                    "format": "double",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "TargetValue"
+                                                            ],
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "TargetTrackingScalingPolicyConfiguration"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "ProvisionedReadCapacityUnits": {
+                                            "description": "The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>.",
+                                            "minimum": 1,
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "IndexName"
+                                    ],
+                                    "type": "object"
+                                },
+                                "maxItems": 20,
+                                "minItems": 1,
+                                "type": "array"
+                            },
+                            "ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate": {
+                                "description": "Autoscaling settings for managing a global table replica's read capacity units.",
+                                "properties": {
+                                    "AutoScalingDisabled": {
+                                        "description": "Disabled autoscaling for this global table or global secondary index.",
+                                        "type": "boolean"
+                                    },
+                                    "AutoScalingRoleArn": {
+                                        "description": "Role ARN used for configuring autoscaling policy.",
+                                        "maxLength": 1600,
+                                        "minLength": 1,
+                                        "type": "string",
+                                        "x-pattern": "[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+                                    },
+                                    "MaximumUnits": {
+                                        "description": "The maximum capacity units that a global table or global secondary index should be scaled up to.",
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    "MinimumUnits": {
+                                        "description": "The minimum capacity units that a global table or global secondary index should be scaled down to.",
+                                        "minimum": 1,
+                                        "type": "integer"
+                                    },
+                                    "ScalingPolicyUpdate": {
+                                        "description": "The scaling policy to apply for scaling target global table or global secondary index capacity units.",
+                                        "properties": {
+                                            "PolicyName": {
+                                                "description": "The name of the scaling policy.",
+                                                "maxLength": 256,
+                                                "minLength": 1,
+                                                "pattern": "\\p{Print}+",
+                                                "type": "string"
+                                            },
+                                            "TargetTrackingScalingPolicyConfiguration": {
+                                                "description": "Represents a target tracking scaling policy configuration.",
+                                                "properties": {
+                                                    "DisableScaleIn": {
+                                                        "description": "Indicates whether scale in by the target tracking policy is disabled. If the value is true, scale in is disabled and the target tracking policy won't remove capacity from the scalable resource. Otherwise, scale in is enabled and the target tracking policy can remove capacity from the scalable resource. The default value is false.",
+                                                        "type": "boolean"
+                                                    },
+                                                    "ScaleInCooldown": {
+                                                        "description": "The amount of time, in seconds, after a scale in activity completes before another scale in activity can start. The cooldown period is used to block subsequent scale in requests until it has expired. You should scale in conservatively to protect your application's availability. However, if another alarm triggers a scale out policy during the cooldown period after a scale-in, application autoscaling scales out your scalable target immediately. ",
+                                                        "type": "integer"
+                                                    },
+                                                    "ScaleOutCooldown": {
+                                                        "description": "The amount of time, in seconds, after a scale out activity completes before another scale out activity can start. While the cooldown period is in effect, the capacity that has been added by the previous scale out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out. You should continuously (but not excessively) scale out.",
+                                                        "type": "integer"
+                                                    },
+                                                    "TargetValue": {
+                                                        "description": "The target value for the metric. The range is 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360 (Base 2).",
+                                                        "format": "double",
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "TargetValue"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "required": [
+                                            "TargetTrackingScalingPolicyConfiguration"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "ReplicaProvisionedReadCapacityUnits": {
+                                "description": "The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>. For more information, see <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput\">Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB Developer Guide</i>. ",
+                                "minimum": 1,
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "RegionName"
+                        ],
+                        "type": "object"
+                    },
+                    "maxItems": 50,
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "GlobalTableName"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

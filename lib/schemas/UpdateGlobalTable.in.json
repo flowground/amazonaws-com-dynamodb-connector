@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "GlobalTableName": {
+                    "description": "The global table name.",
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "ReplicaUpdates": {
+                    "description": "A list of regions that should be added or removed from the global table.",
+                    "items": {
+                        "description": "<p>Represents one of the following:</p> <ul> <li> <p>A new replica to be added to an existing global table.</p> </li> <li> <p>New parameters for an existing replica.</p> </li> <li> <p>An existing replica to be removed from an existing global table.</p> </li> </ul>",
+                        "properties": {
+                            "Create": {
+                                "description": "The parameters required for creating a replica on an existing global table.",
+                                "properties": {
+                                    "RegionName": {
+                                        "description": "The region of the replica to be added.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "RegionName"
+                                ],
+                                "type": "object"
+                            },
+                            "Delete": {
+                                "description": "The name of the existing replica to be removed.",
+                                "properties": {
+                                    "RegionName": {
+                                        "description": "The region of the replica to be removed.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "RegionName"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "GlobalTableName",
+                "ReplicaUpdates"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
